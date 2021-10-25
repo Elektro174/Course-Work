@@ -19,6 +19,5 @@ namespace Entities
         public int Budget { get; set; }
         public int SalesFees { get; set; }
         public string Awards { get; set; }
-
     }
 }
