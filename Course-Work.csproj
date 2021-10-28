@@ -49,5 +49,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Data\Data.csproj">
+      <Project>{E8A73A32-563A-4FE4-9FB7-6337BAA98037}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="Domain\Domain.csproj">
+      <Project>{266A30AC-F97F-4E01-9C21-1887F0907D46}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mappers\Mappers.csproj">
+      <Project>{ef46ff1f-5b2a-4718-a8ac-2252942354e2}</Project>
+      <Name>Mappers</Name>
+    </ProjectReference>
+    <ProjectReference Include="Services\Services.csproj">
+      <Project>{125623D8-B0EF-43BE-85B2-61A62E57280B}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
