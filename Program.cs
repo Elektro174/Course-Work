@@ -22,6 +22,7 @@ namespace Course_Work
             movie.Country = "США";
             movie.ReleaseYear = 1997;
             movie.Budget = 2000000;
+            movie.DirectorId = 1;
             MoviesRepository repository = new MoviesRepository();
             MoviesService directorService = new MoviesService(repository);
             directorService.AddMovie(movie);
