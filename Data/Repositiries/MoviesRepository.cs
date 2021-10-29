@@ -13,6 +13,7 @@ namespace Data.Repositiries
         {
             File.WriteAllText("C:/Users/glebn/source/repos/Course-Work/test.json", String.Empty);
             File.AppendAllText("C:/Users/glebn/source/repos/Course-Work/test.json", JsonConvert.SerializeObject(movie));
+            Console.WriteLine(JsonConvert.SerializeObject(movie));
         }
 
         public void DeleteMovieById(int Id)
