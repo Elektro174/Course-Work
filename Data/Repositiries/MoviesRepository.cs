@@ -1,7 +1,9 @@
 ﻿using Data.Repositiries.Abstract;
 using Entities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Data.Repositiries
 {
@@ -9,7 +11,8 @@ namespace Data.Repositiries
     {
         public void AddMovie(MovieEntity movie)
         {
-            throw new NotImplementedException();
+            File.WriteAllText("C:/Users/glebn/source/repos/Course-Work/test.json", String.Empty);
+            File.AppendAllText("C:/Users/glebn/source/repos/Course-Work/test.json", JsonConvert.SerializeObject(movie));
         }
 
         public void DeleteMovieById(int Id)

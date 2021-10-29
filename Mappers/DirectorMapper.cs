@@ -12,7 +12,7 @@ namespace Mappers
                 SecondName = director.SecondName
             };
         }
-        public static Director ToData(this DirectorEntity director)
+        public static Director ToDomain(this DirectorEntity director)
         {
             return new Director
             {
@@ -20,13 +20,5 @@ namespace Mappers
                 SecondName = director.SecondName
             };
         }
-       /* public static IDirectorsRepository ToDomain(this IDirectorsService director)
-        {
-            return new IDirectorsRepository
-            {
-                FirstName = director.FirstName,
-                SecondName = director.SecondName
-            };
-        }*/
     }
 }
