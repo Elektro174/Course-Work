@@ -1,10 +1,8 @@
 ﻿using Data.Repositiries.Abstract;
 using Domain;
 using Mappers;
-using Newtonsoft.Json;
 using Services.Abstract;
 using System;
-using System.IO;
 
 namespace Services
 {
@@ -19,9 +17,6 @@ namespace Services
         public void AddDirector(Director director)
         {
             _directorsRepository.AddDirector(director.ToEntity());
-/*            File.WriteAllText("test.json", string.Empty);
-            File.AppendAllText("test.json", JsonConvert.SerializeObject(director.ToEntity()));
-            _directorsRepository.AddDirector(director.ToEntity());*/
         }
 
         public void DeleteDirectorById(int Id)

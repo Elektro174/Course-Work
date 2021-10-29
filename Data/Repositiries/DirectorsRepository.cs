@@ -2,21 +2,16 @@
 using Entities;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mappers;
 
 namespace Data.Repositiries
 {
-    internal class DirectorsRepository : IDirectorsRepository
+    public class DirectorsRepository : IDirectorsRepository
     {
         public void AddDirector(DirectorEntity director)
         {
-            File.WriteAllText("test.json", string.Empty);
-            File.AppendAllText("test.json", JsonConvert.SerializeObject(director));
+           // File.WriteAllText("test.json", string.Empty);
+            File.AppendAllText("C:/Users/glebn/source/repos/Course-Work/test.json", JsonConvert.SerializeObject(director));
         }
 
         public void DeleteDirectorById(int Id)

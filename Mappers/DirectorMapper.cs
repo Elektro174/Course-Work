@@ -20,5 +20,13 @@ namespace Mappers
                 SecondName = director.SecondName
             };
         }
+       /* public static IDirectorsRepository ToDomain(this IDirectorsService director)
+        {
+            return new IDirectorsRepository
+            {
+                FirstName = director.FirstName,
+                SecondName = director.SecondName
+            };
+        }*/
     }
 }

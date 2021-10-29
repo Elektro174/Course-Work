@@ -1,23 +1,21 @@
-﻿using Data.Repositiries.Abstract;
+﻿using Data.Repositiries;
 using Domain;
 using Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Course_Work
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             Director director = new Director();
             director.FirstName = "Ivan";
             director.SecondName = "Ivanov";
-            DirectorsService directorsService = new DirectorsService(director);
-            directorsService.AddDirector(director);
+            DirectorsRepository repository = new DirectorsRepository();
+            DirectorsService directorService = new DirectorsService(repository);
+            directorService.AddDirector(director);
+            Console.ReadKey();
         }
     }
 }
