@@ -7,7 +7,8 @@ namespace Domain
         public string Title { get; set; }
         public int DirectorId { get; set; }
         [ForeignKey("DirectorId")]
-        public virtual Director Director { get; set; }
+        public string DirectorFirstName { get; set; }
+        public string DirectorLastName { get; set; }
         public string Country { get; set; }
         public int ReleaseYear { get; set; }
         public int Budget { get; set; }

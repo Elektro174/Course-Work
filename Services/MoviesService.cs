@@ -21,7 +21,7 @@ namespace Services
 
         public void DeleteMovieById(int Id)
         {
-            throw new NotImplementedException();
+            _moviesRepository.DeleteMovieById(Id);
         }
 
         public List<Movie> GetAllMovies()

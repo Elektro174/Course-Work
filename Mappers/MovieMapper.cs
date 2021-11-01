@@ -15,7 +15,9 @@ namespace Mappers
                 DirectorId = movie.DirectorId,
                 ReleaseYear = movie.ReleaseYear,
                 SalesFees = movie.SalesFees,
-                Title = movie.Title
+                Title = movie.Title,
+                DirectorFirstName = movie.DirectorFirstName,
+                DirectorLastName = movie.DirectorLastName
             };
         }
     }

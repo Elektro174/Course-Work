@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="Abstract\BaseEntity.cs" />
     <Compile Include="Abstract\IBaseEntity.cs" />
-    <Compile Include="DirectorEntity.cs" />
     <Compile Include="MovieEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

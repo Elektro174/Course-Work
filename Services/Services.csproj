@@ -44,9 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IDirectorsService.cs" />
     <Compile Include="Abstract\IMoviesService.cs" />
-    <Compile Include="DirectorsService.cs" />
     <Compile Include="MoviesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
