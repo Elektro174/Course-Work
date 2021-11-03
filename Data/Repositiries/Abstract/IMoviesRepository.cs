@@ -9,5 +9,6 @@ namespace Data.Repositiries.Abstract
         void UpdateMovie(MovieEntity movie);
         List<MovieEntity> GetAllMovies();
         void DeleteMovieById(int Id);
+        void UpdateAllMovies(List<MovieEntity> movies);
     }
 }

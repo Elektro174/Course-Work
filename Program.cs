@@ -21,8 +21,8 @@ namespace Course_Work
             movie.DirectorLastName = "Паланик";
             MoviesRepository repository = new MoviesRepository();
             MoviesService movieService = new MoviesService(repository);
-            movieService.AddMovie(movie);
-           // movieService.DeleteMovieById(2);
+            //movieService.AddMovie(movie);
+            movieService.DeleteMovieById(3);
            // Console.ReadKey();
         }
     }
