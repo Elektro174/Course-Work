@@ -7,6 +7,6 @@ namespace Entities.Abstract
     {
         [Key]
         public int Id { get; set; }
-        public DateTime CreatedDdate { get; set; }
+        public string CreatedDdate { get; set; }
     }
 }

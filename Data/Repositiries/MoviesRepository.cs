@@ -1,6 +1,5 @@
 ﻿using Data.Repositiries.Abstract;
 using Entities;
-//using Json.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -12,6 +11,7 @@ namespace Data.Repositiries
     public class MoviesRepository : IMoviesRepository
     {
         const string JSON_FILE_PATH = "C:/Users/glebn/source/repos/Course-Work/test.json";
+        const string LAST_ID_FILE_PATH = "C:/Users/glebn/source/repos/Course-Work/LastId.txt";
         public void AddMovie(MovieEntity movie)
         {
             List<MovieEntity> _movies = new List<MovieEntity>();
@@ -20,49 +20,29 @@ namespace Data.Repositiries
             if (_movies == null)
             {
                 List<MovieEntity> firstMovie = new List<MovieEntity>();
-                movie.CreatedDdate = DateTime.Now;
+                movie.CreatedDdate = DateTime.Now.ToString();
+                movie.Id = 1;
                 firstMovie.Add(movie);
                 File.AppendAllText(JSON_FILE_PATH, JsonConvert.SerializeObject(firstMovie));
+                File.WriteAllText(LAST_ID_FILE_PATH, string.Empty);
+                File.AppendAllText(LAST_ID_FILE_PATH, "1");
                 return;
             }
-            var last = _movies.Count;
-            movie.Id = last++;
-            movie.CreatedDdate = DateTime.UtcNow;
+            movie.Id = Convert.ToInt32(File.ReadAllText(LAST_ID_FILE_PATH)) + 1;
+            movie.CreatedDdate = DateTime.Now.ToString();
             _movies.Add(movie);
             UpdateAllMovies(_movies);
-            //StreamReader r = new StreamReader(JSON_FILE_PATH);
-            // string json = r.ReadToEnd();
-            // List<MovieEntity> movies = JsonConvert.DeserializeObject<List<MovieEntity>>(json);
-            // r.Close();
-            // if (movies == null)
-            //  {
-            //   List<MovieEntity> firstMovie = new List<MovieEntity>();
-            //     firstMovie.Add(movie);
-            //    File.AppendAllText(JSON_FILE_PATH, JsonConvert.SerializeObject(firstMovie));
-            //   return;
-            // }
-            // movies.Add(movie);
-            //   File.AppendAllText(JSON_FILE_PATH, JsonConvert.SerializeObject(movies));
-
-
-
-            // File.WriteAllText("C:/Users/glebn/source/repos/Course-Work/test.json", String.Empty);
-
-
-            //Console.WriteLine(JsonConvert.SerializeObject(movie));
+            int Last = movie.Id;
+            File.WriteAllText(LAST_ID_FILE_PATH, string.Empty);
+            File.AppendAllText(LAST_ID_FILE_PATH, Last.ToString());
         }
 
         public void DeleteMovieById(int Id)
         {
             List<MovieEntity> _movies = new List<MovieEntity>();
             _movies = GetAllMovies();
-
-            // List<MovieEntity> movies = JsonConvert.DeserializeObject<List<MovieEntity>>(json);
-            _movies.RemoveAt(Id);
+            _movies.Remove(_movies.Find(movie => movie.Id == Id));
             UpdateAllMovies(_movies);
-            //File.WriteAllText("C:/Users/glebn/source/repos/Course-Work/test.json", String.Empty);
-            // File.AppendAllText("C:/Users/glebn/source/repos/Course-Work/test.json", JsonConvert.SerializeObject(_movies));
-
         }
 
         public List<MovieEntity> GetAllMovies()
