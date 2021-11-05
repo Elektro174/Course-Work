@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mappers", "Mappers\Mappers.csproj", "{EF46FF1F-5B2A-4718-A8AC-2252942354E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{385E39BB-7332-4068-9245-7EA56F7F8B54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{EF46FF1F-5B2A-4718-A8AC-2252942354E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF46FF1F-5B2A-4718-A8AC-2252942354E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF46FF1F-5B2A-4718-A8AC-2252942354E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{385E39BB-7332-4068-9245-7EA56F7F8B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{385E39BB-7332-4068-9245-7EA56F7F8B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{385E39BB-7332-4068-9245-7EA56F7F8B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{385E39BB-7332-4068-9245-7EA56F7F8B54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

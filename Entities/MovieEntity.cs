@@ -6,8 +6,6 @@ namespace Entities
     public class MovieEntity : BaseEntity
     {
         public string Title { get; set; }
-        public int DirectorId { get; set; }
-        [ForeignKey("DirectorId")]
         public string DirectorFirstName { get; set; }
         public string DirectorLastName { get; set; }
         public string Country { get; set; }

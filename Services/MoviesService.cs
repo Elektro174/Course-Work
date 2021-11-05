@@ -26,7 +26,12 @@ namespace Services
 
         public List<Movie> GetAllMovies()
         {
-            throw new NotImplementedException();
+            return _moviesRepository.GetAllMovies().ToDomainList();
+        }
+
+        public void UpdateAllMovies(List<Movie> movies)
+        {
+            _moviesRepository.UpdateAllMovies(movies.ToEntityList());
         }
 
         public void UpdateMovie(Movie movie)

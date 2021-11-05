@@ -16,7 +16,6 @@ namespace Course_Work
             movie.Country = "США";
             movie.ReleaseYear = 1997;
             movie.Budget = 2000000;
-            movie.DirectorId = 1;
             movie.DirectorFirstName = "Чак";
             movie.DirectorLastName = "Паланик";
             MoviesRepository repository = new MoviesRepository();
