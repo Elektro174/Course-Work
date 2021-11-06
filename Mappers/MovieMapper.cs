@@ -41,8 +41,12 @@ namespace Mappers
         }
         public static List<Movie> ToDomainList(this List<MovieEntity> movies)
         {
+            if (movies != null)
+            {
                 List<Movie> movie = movies.ConvertAll(new Converter<MovieEntity, Movie>(ToDomain));
-                return movie;    
+                return movie;
+            }
+            return null;
         }
         public static List<MovieEntity> ToEntityList(this List<Movie> movies)
         {

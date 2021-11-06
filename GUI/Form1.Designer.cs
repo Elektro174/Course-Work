@@ -34,6 +34,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.SaveChangesButton = new System.Windows.Forms.Button();
             this.OpenAddFilmFormButton = new System.Windows.Forms.Button();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -82,12 +83,21 @@
             this.OpenAddFilmFormButton.UseVisualStyleBackColor = true;
             this.OpenAddFilmFormButton.Click += new System.EventHandler(this.OpenAddFilmFormButton_Click);
             // 
+            // SearchTextBox
+            // 
+            this.SearchTextBox.Location = new System.Drawing.Point(1027, 314);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(151, 20);
+            this.SearchTextBox.TabIndex = 5;
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1295, 592);
+            this.Controls.Add(this.SearchTextBox);
             this.Controls.Add(this.OpenAddFilmFormButton);
             this.Controls.Add(this.SaveChangesButton);
             this.Controls.Add(this.dataGridView1);
@@ -98,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -107,6 +118,7 @@
         private System.Windows.Forms.Button SaveChangesButton;
         private System.Windows.Forms.Button OpenAddFilmFormButton;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox SearchTextBox;
     }
 }
 
