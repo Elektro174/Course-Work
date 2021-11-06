@@ -99,7 +99,7 @@
             this.DeleteMovieButton.Name = "DeleteMovieButton";
             this.DeleteMovieButton.Size = new System.Drawing.Size(151, 49);
             this.DeleteMovieButton.TabIndex = 6;
-            this.DeleteMovieButton.Text = "Удалить выбранный фильм";
+            this.DeleteMovieButton.Text = "Удалить выделенный фильм";
             this.DeleteMovieButton.UseVisualStyleBackColor = true;
             this.DeleteMovieButton.Click += new System.EventHandler(this.DeleteMovieButton_Click);
             // 
