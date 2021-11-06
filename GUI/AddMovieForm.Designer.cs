@@ -51,16 +51,24 @@
             // 
             // TitleTextBox
             // 
-            this.TitleTextBox.Location = new System.Drawing.Point(55, 105);
+            this.TitleTextBox.Location = new System.Drawing.Point(36, 57);
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(177, 20);
             this.TitleTextBox.TabIndex = 1;
             this.TitleTextBox.Text = "Название";
             this.TitleTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TitleTextBox.Enter += new System.EventHandler(this.TitleTextBox_Enter);
+            this.DirectorFirstNameTextBox.Enter += new System.EventHandler(this.DirectorFirstNameTextBox_Enter);
+            this.DirectorLastNameTextBox.Enter += new System.EventHandler(this.DirectorLastNameTextBox_Enter);
+            this.CountryTextBox.Enter += new System.EventHandler(this.CountryTextBox_Enter);
+            this.ReleasYearTextBox.Enter += new System.EventHandler(this.ReleasYearTextBox_Enter);
+            this.BudgetTextBox.Enter += new System.EventHandler(this.BudgetTextBox_Enter);
+            this.SalesFeesTextBox.Enter += new System.EventHandler(this.SalesFeesTextBox_Enter);
+            this.AwardsTextBox.Enter += new System.EventHandler(this.AwardsTextBox_Enter);
             // 
             // DirectorFirstNameTextBox
             // 
-            this.DirectorFirstNameTextBox.Location = new System.Drawing.Point(55, 153);
+            this.DirectorFirstNameTextBox.Location = new System.Drawing.Point(36, 105);
             this.DirectorFirstNameTextBox.Name = "DirectorFirstNameTextBox";
             this.DirectorFirstNameTextBox.Size = new System.Drawing.Size(177, 20);
             this.DirectorFirstNameTextBox.TabIndex = 2;
@@ -69,7 +77,7 @@
             // 
             // CountryTextBox
             // 
-            this.CountryTextBox.Location = new System.Drawing.Point(55, 247);
+            this.CountryTextBox.Location = new System.Drawing.Point(36, 199);
             this.CountryTextBox.Name = "CountryTextBox";
             this.CountryTextBox.Size = new System.Drawing.Size(177, 20);
             this.CountryTextBox.TabIndex = 4;
@@ -78,7 +86,7 @@
             // 
             // DirectorLastNameTextBox
             // 
-            this.DirectorLastNameTextBox.Location = new System.Drawing.Point(55, 199);
+            this.DirectorLastNameTextBox.Location = new System.Drawing.Point(36, 151);
             this.DirectorLastNameTextBox.Name = "DirectorLastNameTextBox";
             this.DirectorLastNameTextBox.Size = new System.Drawing.Size(177, 20);
             this.DirectorLastNameTextBox.TabIndex = 3;
@@ -87,7 +95,7 @@
             // 
             // AwardsTextBox
             // 
-            this.AwardsTextBox.Location = new System.Drawing.Point(55, 437);
+            this.AwardsTextBox.Location = new System.Drawing.Point(36, 389);
             this.AwardsTextBox.Name = "AwardsTextBox";
             this.AwardsTextBox.Size = new System.Drawing.Size(177, 20);
             this.AwardsTextBox.TabIndex = 8;
@@ -96,30 +104,33 @@
             // 
             // SalesFeesTextBox
             // 
-            this.SalesFeesTextBox.Location = new System.Drawing.Point(55, 389);
+            this.SalesFeesTextBox.Location = new System.Drawing.Point(36, 341);
             this.SalesFeesTextBox.Name = "SalesFeesTextBox";
             this.SalesFeesTextBox.Size = new System.Drawing.Size(177, 20);
             this.SalesFeesTextBox.TabIndex = 7;
             this.SalesFeesTextBox.Text = "Кассовые сборы";
             this.SalesFeesTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SalesFeesTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SalesFeesTextBox_KeyPress);
             // 
             // BudgetTextBox
             // 
-            this.BudgetTextBox.Location = new System.Drawing.Point(55, 343);
+            this.BudgetTextBox.Location = new System.Drawing.Point(36, 295);
             this.BudgetTextBox.Name = "BudgetTextBox";
             this.BudgetTextBox.Size = new System.Drawing.Size(177, 20);
             this.BudgetTextBox.TabIndex = 6;
             this.BudgetTextBox.Text = "Бюджет";
             this.BudgetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.BudgetTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BudgetTextBox_KeyPress);
             // 
             // ReleasYearTextBox
             // 
-            this.ReleasYearTextBox.Location = new System.Drawing.Point(55, 295);
+            this.ReleasYearTextBox.Location = new System.Drawing.Point(36, 247);
             this.ReleasYearTextBox.Name = "ReleasYearTextBox";
             this.ReleasYearTextBox.Size = new System.Drawing.Size(177, 20);
             this.ReleasYearTextBox.TabIndex = 5;
             this.ReleasYearTextBox.Text = "Год Выпуска";
             this.ReleasYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ReleasYearTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ReleasYearTextBox_KeyPress);
             // 
             // AddMovieButton
             // 
@@ -129,6 +140,7 @@
             this.AddMovieButton.TabIndex = 9;
             this.AddMovieButton.Text = "Добавить фильм";
             this.AddMovieButton.UseVisualStyleBackColor = true;
+            this.AddMovieButton.Click += new System.EventHandler(this.AddMovieButton_Click);
             // 
             // AddMovieForm
             // 
@@ -136,18 +148,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1136, 620);
+            this.Controls.Add(this.DirectorLastNameTextBox);
+            this.Controls.Add(this.TitleTextBox);
             this.Controls.Add(this.AddMovieButton);
             this.Controls.Add(this.AwardsTextBox);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.DirectorFirstNameTextBox);
             this.Controls.Add(this.SalesFeesTextBox);
-            this.Controls.Add(this.BudgetTextBox);
             this.Controls.Add(this.ReleasYearTextBox);
             this.Controls.Add(this.CountryTextBox);
-            this.Controls.Add(this.DirectorLastNameTextBox);
-            this.Controls.Add(this.DirectorFirstNameTextBox);
-            this.Controls.Add(this.TitleTextBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.BudgetTextBox);
             this.Name = "AddMovieForm";
             this.Text = "AddMovieForm";
+            this.Load += new System.EventHandler(this.AddMovieForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
