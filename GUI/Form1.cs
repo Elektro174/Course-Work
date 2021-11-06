@@ -49,6 +49,11 @@ namespace GUI
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
+            if (MainFormDataViewModel.movies == null)
+            {
+                MessageBox.Show("Сначала добавьте хотя бы один фильм\n с помощью окна добалвения фильмов");
+                return;
+            }
             MoviesRepository repository = new MoviesRepository();
             MoviesService movieService = new MoviesService(repository);
             movieService.UpdateAllMovies(MainFormDataViewModel.movies);
@@ -89,6 +94,24 @@ namespace GUI
                     }
 
                 }
+            }
+        }
+
+        private void DeleteMovieButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                MoviesRepository repository = new MoviesRepository();
+                MoviesService movieService = new MoviesService(repository);
+                movieService.DeleteMovieById(Convert.ToInt32(dataGridView1.SelectedCells[8].Value));
+                MainFormDataViewModel.movies = movieService.GetAllMovies();
+                dataGridView1.DataSource = MainFormDataViewModel.movies;
+                SetDataGridViewHeaders();
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста выделите одну строку с фильмом,\nкоторый хотите удалить, целиком");
             }
         }
     }

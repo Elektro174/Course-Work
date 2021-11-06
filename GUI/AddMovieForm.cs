@@ -24,14 +24,32 @@ namespace GUI
         private void AddMovieButton_Click(object sender, EventArgs e)
         {
             Movie movie = new Movie();
-            movie.Title = TitleTextBox.Text;
-            movie.DirectorFirstName = DirectorFirstNameTextBox.Text;
-            movie.DirectorLastName = DirectorLastNameTextBox.Text;
-            movie.Country = CountryTextBox.Text;
-            movie.ReleaseYear = Convert.ToInt32(ReleasYearTextBox.Text);
-            movie.Budget = Convert.ToInt32(BudgetTextBox.Text);
-            movie.SalesFees = Convert.ToInt32(SalesFeesTextBox.Text);
-            movie.Awards = AwardsTextBox.Text;
+
+            if (TitleTextBox.Text == "Название" || TitleTextBox.Text == "" || DirectorFirstNameTextBox.Text == "Имя режисёра" || DirectorFirstNameTextBox.Text == ""
+                || DirectorLastNameTextBox.Text == "Фамилия режисёра" || DirectorLastNameTextBox.Text == "" || CountryTextBox.Text == "Страна" || CountryTextBox.Text == ""
+                || ReleasYearTextBox.Text == "Год выпуска" || ReleasYearTextBox.Text == "" || BudgetTextBox.Text == "Бюджет" || BudgetTextBox.Text == ""
+                || SalesFeesTextBox.Text == "Кассовые сборы" || SalesFeesTextBox.Text == "" || AwardsTextBox.Text == "Награды" || AwardsTextBox.Text == "")
+            {
+                MessageBox.Show("Пожалуйста заполните все поля о фильме");
+                return;
+            }
+            try
+            {
+                movie.Title = TitleTextBox.Text;
+                movie.DirectorFirstName = DirectorFirstNameTextBox.Text;
+                movie.DirectorLastName = DirectorLastNameTextBox.Text;
+                movie.Country = CountryTextBox.Text;
+                movie.ReleaseYear = Convert.ToInt32(ReleasYearTextBox.Text);
+                movie.Budget = Convert.ToInt32(BudgetTextBox.Text);
+                movie.SalesFees = Convert.ToInt32(SalesFeesTextBox.Text);
+                movie.Awards = AwardsTextBox.Text;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Пожалуйста заполните все поля о фильме");
+                return;
+            }
+
             MoviesRepository moviesRepository = new MoviesRepository();
             MoviesService moviesService = new MoviesService(moviesRepository);
             moviesService.AddMovie(movie);
@@ -69,16 +87,16 @@ namespace GUI
             TitleTextBox.Text = "Название";
             TitleTextBox.ForeColor = Color.Gray;
 
-            DirectorFirstNameTextBox.Text = "Имя Режисёра";
+            DirectorFirstNameTextBox.Text = "Имя режисёра";
             DirectorFirstNameTextBox.ForeColor = Color.Gray;
 
-            DirectorLastNameTextBox.Text = "Фамилия Режисёра";
+            DirectorLastNameTextBox.Text = "Фамилия режисёра";
             DirectorLastNameTextBox.ForeColor = Color.Gray;
 
             CountryTextBox.Text = "Страна";
             CountryTextBox.ForeColor = Color.Gray;
 
-            ReleasYearTextBox.Text = "Год Выпуска";
+            ReleasYearTextBox.Text = "Год выпуска";
             ReleasYearTextBox.ForeColor = Color.Gray;
 
             BudgetTextBox.Text = "Бюджет";
