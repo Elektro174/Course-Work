@@ -1,15 +1,7 @@
 ﻿using Data.Repositiries;
-using Domain;
 using GUI.Models.ViewModels;
 using Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI
@@ -20,6 +12,10 @@ namespace GUI
         {
             InitializeComponent();
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
         public void SetDataGridViewHeaders()
         {
             dataGridView1.Columns[0].HeaderText = "Название";
@@ -28,10 +24,14 @@ namespace GUI
             dataGridView1.Columns[3].HeaderText = "Страна";
             dataGridView1.Columns[4].HeaderText = "Год выпуска";
             dataGridView1.Columns[5].HeaderText = "Бюджет $";
-            dataGridView1.Columns[6].HeaderText = "Кассовые сборы";
+            dataGridView1.Columns[6].HeaderText = "Кассовые сборы $";
             dataGridView1.Columns[7].HeaderText = "Награды";
             dataGridView1.Columns[8].Visible = false;
             dataGridView1.Columns[9].Visible = false;
+            for (int i = 0; (i <= (dataGridView1.Rows.Count - 1)); i++)
+            {
+                dataGridView1.Rows[i].HeaderCell.Value = string.Format((i + 1).ToString(), "0");
+            }
         }
         private void GetDataButton_Click(object sender, EventArgs e)
         {
@@ -66,11 +66,6 @@ namespace GUI
             addMovieForm.Show();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
             dataGridView1.ClearSelection();
@@ -92,7 +87,15 @@ namespace GUI
                     {
                         row.Selected = true;
                     }
+                }
+            }
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                var row = dataGridView1.Rows[i];
 
+                if (row.HeaderCell.Value.ToString().ToLower() == value)
+                {
+                    row.Selected = true;
                 }
             }
         }
@@ -101,17 +104,25 @@ namespace GUI
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-                MoviesRepository repository = new MoviesRepository();
-                MoviesService movieService = new MoviesService(repository);
-                movieService.DeleteMovieById(Convert.ToInt32(dataGridView1.SelectedCells[8].Value));
-                MainFormDataViewModel.movies = movieService.GetAllMovies();
-                dataGridView1.DataSource = MainFormDataViewModel.movies;
-                SetDataGridViewHeaders();
-                return;
+                DialogResult dialogResult = MessageBox.Show("Вы точно хотите удалить данный фильм?", "Удаление фильма", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    MoviesRepository repository = new MoviesRepository();
+                    MoviesService movieService = new MoviesService(repository);
+                    movieService.DeleteMovieById(Convert.ToInt32(dataGridView1.SelectedCells[8].Value));
+                    MainFormDataViewModel.movies = movieService.GetAllMovies();
+                    dataGridView1.DataSource = MainFormDataViewModel.movies;
+                    SetDataGridViewHeaders();
+                    return;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
             }
             else
             {
-                MessageBox.Show("Пожалуйста выделите одну строку с фильмом,\nкоторый хотите удалить, целиком");
+                MessageBox.Show("Пожалуйста выделите одну строку с фильмом, который вы хотите удалить, целиком c помощью поиска, либо нажатием на ячейку с номероом строки");
             }
         }
     }
