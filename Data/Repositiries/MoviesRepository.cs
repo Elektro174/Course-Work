@@ -4,13 +4,22 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace Data.Repositiries
 {
     public class MoviesRepository : IMoviesRepository
     {
-        const string JSON_FILE_PATH = "C:/Users/glebn/source/repos/Course-Work/test.json";
-        const string LAST_ID_FILE_PATH = "C:/Users/glebn/source/repos/Course-Work/LastId.txt";
+        static string projectRoot = AppDomain.CurrentDomain.BaseDirectory
+      .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+      .AsObjectSequence(path => Path.GetDirectoryName(path))
+      .Where(path => Directory.EnumerateFiles(path, "*.json").Any())
+      .First();
+        static string jsonFileName = Path.Combine(projectRoot, "MoviesList.json");
+        static string txtFileName = Path.Combine(projectRoot, "LastId.txt");
+        string JSON_FILE_PATH = jsonFileName;
+        string LAST_ID_FILE_PATH = txtFileName;
         public void AddMovie(MovieEntity movie)
         {
             List<MovieEntity> _movies = new List<MovieEntity>();
@@ -32,6 +41,7 @@ namespace Data.Repositiries
             _movies.Add(movie);
             UpdateAllMovies(_movies);
             int Last = movie.Id;
+
             File.WriteAllText(LAST_ID_FILE_PATH, string.Empty);
             File.AppendAllText(LAST_ID_FILE_PATH, Last.ToString());
         }
