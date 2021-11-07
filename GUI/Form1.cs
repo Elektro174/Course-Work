@@ -36,6 +36,11 @@ namespace GUI
             {
                 dataGridView1.Rows[i].HeaderCell.Value = string.Format((i + 1).ToString(), "0");
             }
+            dataGridView1.RowHeadersWidth = 50;
+            for (int i = 0; i < 8; i++)
+            {
+                dataGridView1.AutoResizeColumn(i);
+            }
         }
         private void GetDataButton_Click(object sender, EventArgs e)
         {
@@ -146,8 +151,16 @@ namespace GUI
                 MessageBox.Show("Для сохранения в PDF укажите место где хотите создать файл и сохранить данные, или сохранить в уже существующий файл данные и нажмите кнопку \"ОК\"");
                 return;
             }
-            iTextSharp.text.Document doc = new iTextSharp.text.Document();
-            PdfWriter.GetInstance(doc, new FileStream(MoviesListPath, FileMode.Create));
+            Document doc = new Document();
+            try
+            {
+                PdfWriter.GetInstance(doc, new FileStream(MoviesListPath, FileMode.Create, FileAccess.Write));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Для сохранения файла в данном месте запустите программу от имени администратора, либо измените место сохранения файла");
+                return;
+            }
             doc.Open();
             BaseFont baseFont = BaseFont.CreateFont("C:/Windows/Fonts/arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 8 , iTextSharp.text.Font.NORMAL);
@@ -182,6 +195,57 @@ namespace GUI
             doc.Close();
 
             MessageBox.Show("Pdf-документ сохранен");
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)       
+            {
+                
+                MessageBox.Show("• Чтобы добавить фильм нажмите на кнопку \"Открыть окно добавления фильмов\".\n\n" +
+                    "• Чтобы просмотреть уже добавленные ранее фильмы нажмите на кнопку \"Открыть окно добавления фильмов\".\n\n" +
+                    "• Чтобы найти фильм в списке используейте поиск.\n\n" +
+                    "• Чтобы удалить фильм выделите его в списке, нажав на ячейку с номером фильма, либо найдите фильм с помощью поиска, он выделится автоматически, и нажмите кнопку \"Удалить фильм\".\n\n" +
+                    "• Чтобы сохранить список фильмов в PDF файл нажмите на кнопку \"Сохранить в PDF\".\n\n" +
+                    "Вы можете изменять данные фильмов прямо в таблице, для этого кликните 2 раза на ячейку в которой хотите изменить данные, измените данные и нажмите на кнопку \"Сохранить изменения\".\n\n" +
+                    "• Горячие клавиши:\nПолучить список фильмов   –   CTRL+G\n" +
+                    "Сохранить изменения   –   CTRL+S\n" +
+                    "Открыть окно добавления фильмов   –   CTRL+O\n" +
+                    "Поиск   –   CTRL+N\n" +
+                    "Удалить выделенный фильм   –   CTRL+D\n" +
+                    "Сохранить в PDF   –   CTRL+P", "Помощь");
+                e.SuppressKeyPress = true;  
+            }
+            if (e.Control && e.KeyCode == Keys.G)
+            {
+                GetDataButton_Click(sender, e);
+                e.SuppressKeyPress = true;  
+            }
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                SaveChangesButton_Click(sender, e);
+                e.SuppressKeyPress = true; 
+            }
+            if (e.Control && e.KeyCode == Keys.O)
+            {
+                OpenAddFilmFormButton_Click(sender, e);
+                e.SuppressKeyPress = true;
+            }
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                SearchTextBox.Select();
+                e.SuppressKeyPress = true;
+            }
+            if (e.Control && e.KeyCode == Keys.D)
+            {
+                DeleteMovieButton_Click(sender, e);
+                e.SuppressKeyPress = true;
+            }
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                SaveToPDF_Click(sender, e);
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }

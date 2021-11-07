@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GetDataButton = new System.Windows.Forms.Button();
             this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -39,13 +39,14 @@
             this.DeleteMovieButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SaveToPDF = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // GetDataButton
             // 
-            this.GetDataButton.Location = new System.Drawing.Point(1027, 35);
+            this.GetDataButton.Location = new System.Drawing.Point(1027, 52);
             this.GetDataButton.Name = "GetDataButton";
             this.GetDataButton.Size = new System.Drawing.Size(151, 49);
             this.GetDataButton.TabIndex = 1;
@@ -64,21 +65,21 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 52);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.NullValue = "DataGridViewNumberedRow.OnRowPostPaint()";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Size = new System.Drawing.Size(959, 456);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.NullValue = "DataGridViewNumberedRow.OnRowPostPaint()";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Size = new System.Drawing.Size(996, 456);
             this.dataGridView1.TabIndex = 2;
             // 
             // SaveChangesButton
             // 
-            this.SaveChangesButton.Location = new System.Drawing.Point(1027, 118);
+            this.SaveChangesButton.Location = new System.Drawing.Point(1027, 130);
             this.SaveChangesButton.Name = "SaveChangesButton";
             this.SaveChangesButton.Size = new System.Drawing.Size(151, 49);
             this.SaveChangesButton.TabIndex = 3;
@@ -106,7 +107,7 @@
             // 
             // DeleteMovieButton
             // 
-            this.DeleteMovieButton.Location = new System.Drawing.Point(1027, 376);
+            this.DeleteMovieButton.Location = new System.Drawing.Point(1027, 389);
             this.DeleteMovieButton.Name = "DeleteMovieButton";
             this.DeleteMovieButton.Size = new System.Drawing.Size(151, 49);
             this.DeleteMovieButton.TabIndex = 6;
@@ -134,12 +135,23 @@
             this.SaveToPDF.UseVisualStyleBackColor = true;
             this.SaveToPDF.Click += new System.EventHandler(this.SaveToPDF_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(173, 31);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "F2 – Помощь";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1295, 592);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.SaveToPDF);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DeleteMovieButton);
@@ -148,9 +160,11 @@
             this.Controls.Add(this.SaveChangesButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.GetDataButton);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "MovieList";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -168,6 +182,7 @@
         private System.Windows.Forms.Button DeleteMovieButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button SaveToPDF;
+        private System.Windows.Forms.Label label2;
     }
 }
 
