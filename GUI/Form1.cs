@@ -1,7 +1,11 @@
 ﻿using Data.Repositiries;
 using GUI.Models.ViewModels;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 using Services;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace GUI
@@ -23,8 +27,8 @@ namespace GUI
             dataGridView1.Columns[2].HeaderText = "Фамилия режисёра";
             dataGridView1.Columns[3].HeaderText = "Страна";
             dataGridView1.Columns[4].HeaderText = "Год выпуска";
-            dataGridView1.Columns[5].HeaderText = "Бюджет $";
-            dataGridView1.Columns[6].HeaderText = "Кассовые сборы $";
+            dataGridView1.Columns[5].HeaderText = "Бюджет млн. $";
+            dataGridView1.Columns[6].HeaderText = "Сборы млн. $";
             dataGridView1.Columns[7].HeaderText = "Награды";
             dataGridView1.Columns[8].Visible = false;
             dataGridView1.Columns[9].Visible = false;
@@ -122,8 +126,62 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("Пожалуйста выделите одну строку с фильмом, который вы хотите удалить, целиком c помощью поиска, либо нажатием на ячейку с номероом строки");
+                MessageBox.Show("Пожалуйста выделите одну строку с фильмом, который вы хотите удалить, целиком c помощью поиска, либо нажатием на ячейку с номером строки");
             }
+        }
+
+        private void SaveToPDF_Click(object sender, EventArgs e)
+        {
+            string MoviesListPath = "";
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Text File (*.pdf)|*.pdf|Show All Files (*.*)|*.*";
+            sfd.FileName = "Список фильмов";
+            sfd.Title = "Сохранить как";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+              MoviesListPath = Path.GetFullPath(sfd.FileName);
+            }
+            if (MoviesListPath == "")
+            {
+                MessageBox.Show("Для сохранения в PDF укажите место где хотите создать файл и сохранить данные, или сохранить в уже существующий файл данные и нажмите кнопку \"ОК\"");
+                return;
+            }
+            iTextSharp.text.Document doc = new iTextSharp.text.Document();
+            PdfWriter.GetInstance(doc, new FileStream(MoviesListPath, FileMode.Create));
+            doc.Open();
+            BaseFont baseFont = BaseFont.CreateFont("C:/Windows/Fonts/arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 8 , iTextSharp.text.Font.NORMAL);
+            iTextSharp.text.Font fontHeader = new iTextSharp.text.Font(baseFont, 14, iTextSharp.text.Font.NORMAL);
+            PdfPTable table = new PdfPTable(new float[] { 30, 18, 15, 25, 9, 10, 10, 38 });
+            PdfPCell cell = new PdfPCell(new Phrase("Cписок фильмов", fontHeader));
+
+            cell.Colspan = dataGridView1.Columns.Count;
+            cell.HorizontalAlignment = 1;
+            cell.Border = 0;
+            table.AddCell(cell);
+
+            for (int j = 0; j < 8; j++)
+            {
+                cell = new PdfPCell(new Phrase(new Phrase(dataGridView1.Columns[j].HeaderText, font)));
+                cell.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
+                cell.HorizontalAlignment = 1;
+                table.AddCell(cell);
+            }
+
+            for (int j = 0; j < dataGridView1.Rows.Count; j++)
+            {
+                for (int k = 0; k < 8; k++)
+                {
+                    cell = new PdfPCell(new Phrase(dataGridView1.Rows[j].Cells[k].Value.ToString(), font));
+                    cell.HorizontalAlignment = 1;
+                    table.AddCell(cell);
+                }
+            }
+            //Добавляем таблицу в документ
+            doc.Add(table);
+            doc.Close();
+
+            MessageBox.Show("Pdf-документ сохранен");
         }
     }
 }

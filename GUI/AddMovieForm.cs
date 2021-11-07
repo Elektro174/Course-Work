@@ -46,7 +46,7 @@ namespace GUI
             }
             catch (Exception)
             {
-                MessageBox.Show("Пожалуйста заполните все поля о фильме");
+                MessageBox.Show("Пожалуйста введите корректные данные");
                 return;
             }
 
