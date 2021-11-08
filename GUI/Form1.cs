@@ -144,7 +144,7 @@ namespace GUI
             sfd.Title = "Сохранить как";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-              MoviesListPath = Path.GetFullPath(sfd.FileName);
+                MoviesListPath = Path.GetFullPath(sfd.FileName);
             }
             if (MoviesListPath == "")
             {
@@ -163,7 +163,7 @@ namespace GUI
             }
             doc.Open();
             BaseFont baseFont = BaseFont.CreateFont("C:/Windows/Fonts/arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 8 , iTextSharp.text.Font.NORMAL);
+            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 8, iTextSharp.text.Font.NORMAL);
             iTextSharp.text.Font fontHeader = new iTextSharp.text.Font(baseFont, 14, iTextSharp.text.Font.NORMAL);
             PdfPTable table = new PdfPTable(new float[] { 30, 18, 15, 25, 9, 10, 10, 38 });
             PdfPCell cell = new PdfPCell(new Phrase("Cписок фильмов", fontHeader));
@@ -199,9 +199,9 @@ namespace GUI
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F2)       
+            if (e.KeyCode == Keys.F2)
             {
-                
+
                 MessageBox.Show("• Чтобы добавить фильм нажмите на кнопку \"Открыть окно добавления фильмов\".\n\n" +
                     "• Чтобы просмотреть уже добавленные ранее фильмы нажмите на кнопку \"Открыть окно добавления фильмов\".\n\n" +
                     "• Чтобы найти фильм в списке используейте поиск.\n\n" +
@@ -214,17 +214,17 @@ namespace GUI
                     "Поиск   –   CTRL+N\n" +
                     "Удалить выделенный фильм   –   CTRL+D\n" +
                     "Сохранить в PDF   –   CTRL+P", "Помощь");
-                e.SuppressKeyPress = true;  
+                e.SuppressKeyPress = true;
             }
             if (e.Control && e.KeyCode == Keys.G)
             {
                 GetDataButton_Click(sender, e);
-                e.SuppressKeyPress = true;  
+                e.SuppressKeyPress = true;
             }
             if (e.Control && e.KeyCode == Keys.S)
             {
                 SaveChangesButton_Click(sender, e);
-                e.SuppressKeyPress = true; 
+                e.SuppressKeyPress = true;
             }
             if (e.Control && e.KeyCode == Keys.O)
             {
@@ -246,6 +246,43 @@ namespace GUI
                 SaveToPDF_Click(sender, e);
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+            {
+                dataGridView1[e.ColumnIndex, e.RowIndex].ErrorText =
+                    "Ячейка не может быть пустой";
+                MessageBox.Show("Ячейки не могут быть пустыми");
+                e.Cancel = true;
+            }
+            if (e.ColumnIndex > 3 && e.ColumnIndex < 7)
+            {
+                if (e.FormattedValue.ToString().Length > 10)
+                {
+                    dataGridView1[e.ColumnIndex, e.RowIndex].ErrorText =
+                    "Количество цифр в данной ячейке не может быть больше 10";
+                    MessageBox.Show("Количество цифр в данной ячейке не может быть больше 10");
+                    e.Cancel = true;
+                }
+                var arr = e.FormattedValue.ToString().ToCharArray();
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (!char.IsNumber(arr[i]))
+                    {
+                        dataGridView1[e.ColumnIndex, e.RowIndex].ErrorText =
+                    "В данной ячейке могут находиться только целые числа";
+                        MessageBox.Show("В данной ячейке могут находиться только целые числа");
+                        e.Cancel = true;
+                    }
+                }
+            }
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1[e.ColumnIndex, e.RowIndex].ErrorText = String.Empty;
         }
     }
 }
