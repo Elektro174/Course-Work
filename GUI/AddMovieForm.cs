@@ -25,10 +25,22 @@ namespace GUI
         {
             Movie movie = new Movie();
 
-            if (TitleTextBox.Text == "Название" || TitleTextBox.Text == "" || DirectorFirstNameTextBox.Text == "Имя режисёра" || DirectorFirstNameTextBox.Text == ""
-                || DirectorLastNameTextBox.Text == "Фамилия режисёра" || DirectorLastNameTextBox.Text == "" || CountryTextBox.Text == "Страна" || CountryTextBox.Text == ""
-                || ReleasYearTextBox.Text == "Год выпуска" || ReleasYearTextBox.Text == "" || BudgetTextBox.Text == "Бюджет" || BudgetTextBox.Text == ""
-                || SalesFeesTextBox.Text == "Кассовые сборы" || SalesFeesTextBox.Text == "" || AwardsTextBox.Text == "Награды" || AwardsTextBox.Text == "")
+            if (TitleTextBox.Text == "Название"
+                || TitleTextBox.Text == ""
+                || DirectorFirstNameTextBox.Text == "Имя режисёра"
+                || DirectorFirstNameTextBox.Text == ""
+                || DirectorLastNameTextBox.Text == "Фамилия режисёра"
+                || DirectorLastNameTextBox.Text == ""
+                || CountryTextBox.Text == "Страна"
+                || CountryTextBox.Text == ""
+                || ReleasYearTextBox.Text == "Год выпуска"
+                || ReleasYearTextBox.Text == ""
+                || BudgetTextBox.Text == "Бюджет"
+                || BudgetTextBox.Text == ""
+                || SalesFeesTextBox.Text == "Кассовые сборы"
+                || SalesFeesTextBox.Text == ""
+                || AwardsTextBox.Text == "Награды"
+                || AwardsTextBox.Text == "")
             {
                 MessageBox.Show("Пожалуйста заполните все поля о фильме");
                 return;

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entities.Abstract
+﻿namespace Entities.Abstract
 {
     public interface IBaseEntity
     {

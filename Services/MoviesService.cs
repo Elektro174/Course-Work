@@ -2,7 +2,6 @@
 using Domain;
 using Mappers;
 using Services.Abstract;
-using System;
 using System.Collections.Generic;
 
 namespace Services
@@ -32,11 +31,6 @@ namespace Services
         public void UpdateAllMovies(List<Movie> movies)
         {
             _moviesRepository.UpdateAllMovies(movies.ToEntityList());
-        }
-
-        public void UpdateMovie(Movie movie)
-        {
-            throw new NotImplementedException();
         }
     }
 }

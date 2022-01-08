@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace Data.Repositiries
 {
@@ -70,11 +69,6 @@ namespace Data.Repositiries
             movies = _movies;
             File.WriteAllText(JSON_FILE_PATH, String.Empty);
             File.AppendAllText(JSON_FILE_PATH, JsonConvert.SerializeObject(movies));
-        }
-
-        public void UpdateMovie(MovieEntity movie)
-        {
-            throw new NotImplementedException();
         }
     }
 }

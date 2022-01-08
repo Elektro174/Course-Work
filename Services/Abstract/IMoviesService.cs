@@ -6,7 +6,6 @@ namespace Services.Abstract
     public interface IMoviesService
     {
         void AddMovie(Movie movie);
-        void UpdateMovie(Movie movie);
         List<Movie> GetAllMovies();
         void DeleteMovieById(int Id);
         void UpdateAllMovies(List<Movie> movies);

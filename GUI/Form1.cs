@@ -1,7 +1,6 @@
 ﻿using Data.Repositiries;
 using GUI.Models.ViewModels;
 using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using Services;
 using System;
@@ -49,7 +48,7 @@ namespace GUI
             MainFormDataViewModel.movies = movieService.GetAllMovies();
             if (MainFormDataViewModel.movies == null)
             {
-                MessageBox.Show("Сначала добавьте хотя бы один фильм\n с помощью окна добалвения фильмов");
+                MessageBox.Show("Сначала добавьте хотя бы один фильм\n с помощью окна добавления фильмов");
                 return;
             }
             dataGridView1.DataSource = MainFormDataViewModel.movies;
@@ -83,9 +82,15 @@ namespace GUI
                 return;
 
             var value = SearchTextBox.Text.ToLower();
-            var result = MainFormDataViewModel.movies.Find(x => x.Title.ToLower() == value || x.DirectorLastName.ToLower() == value || x.DirectorFirstName.ToLower() == value
-            || x.ReleaseYear.ToString() == value || x.SalesFees.ToString() == value || x.Country.ToLower() == value || x.Budget.ToString() == value
-             || x.Awards.ToLower() == value || (x.DirectorFirstName.ToLower() + " " + x.DirectorLastName.ToLower()) == value);
+            var result = MainFormDataViewModel.movies.Find(x => x.Title.ToLower() == value
+            || x.DirectorLastName.ToLower() == value
+            || x.DirectorFirstName.ToLower() == value
+            || x.ReleaseYear.ToString() == value
+            || x.SalesFees.ToString() == value
+            || x.Country.ToLower() == value
+            || x.Budget.ToString() == value
+            || x.Awards.ToLower() == value
+            || (x.DirectorFirstName.ToLower() + " " + x.DirectorLastName.ToLower()) == value);
             if (result != null)
             {
                 for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -113,7 +118,8 @@ namespace GUI
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-                DialogResult dialogResult = MessageBox.Show("Вы точно хотите удалить данный фильм?", "Удаление фильма", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Вы точно хотите удалить данный фильм?",
+                    "Удаление фильма", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     MoviesRepository repository = new MoviesRepository();
@@ -131,7 +137,8 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("Пожалуйста выделите одну строку с фильмом, который вы хотите удалить, целиком c помощью поиска, либо нажатием на ячейку с номером строки");
+                MessageBox.Show("Пожалуйста выделите одну строку с фильмом, который вы хотите удалить, " +
+                    "целиком c помощью поиска, либо нажатием на ячейку с номером строки");
             }
         }
 
@@ -148,7 +155,8 @@ namespace GUI
             }
             if (MoviesListPath == "")
             {
-                MessageBox.Show("Для сохранения в PDF укажите место где хотите создать файл и сохранить данные, или сохранить в уже существующий файл данные и нажмите кнопку \"ОК\"");
+                MessageBox.Show("Для сохранения в PDF укажите место где хотите создать файл и сохранить данные," +
+                    " или сохранить в уже существующий файл данные и нажмите кнопку \"ОК\"");
                 return;
             }
             Document doc = new Document();
@@ -158,7 +166,8 @@ namespace GUI
             }
             catch (Exception)
             {
-                MessageBox.Show("Для сохранения файла в данном месте запустите программу от имени администратора, либо измените место сохранения файла");
+                MessageBox.Show("Для сохранения файла в данном месте запустите программу от имени администратора, либо" +
+                    " измените место сохранения файла");
                 return;
             }
             doc.Open();
@@ -202,18 +211,20 @@ namespace GUI
             if (e.KeyCode == Keys.F2)
             {
 
-                MessageBox.Show("• Чтобы добавить фильм нажмите на кнопку \"Открыть окно добавления фильмов\".\n\n" +
-                    "• Чтобы просмотреть уже добавленные ранее фильмы нажмите на кнопку \"Открыть окно добавления фильмов\".\n\n" +
-                    "• Чтобы найти фильм в списке используейте поиск.\n\n" +
-                    "• Чтобы удалить фильм выделите его в списке, нажав на ячейку с номером фильма, либо найдите фильм с помощью поиска, он выделится автоматически, и нажмите кнопку \"Удалить фильм\".\n\n" +
-                    "• Чтобы сохранить список фильмов в PDF файл нажмите на кнопку \"Сохранить в PDF\".\n\n" +
-                    "Вы можете изменять данные фильмов прямо в таблице, для этого кликните 2 раза на ячейку в которой хотите изменить данные, измените данные и нажмите на кнопку \"Сохранить изменения\".\n\n" +
-                    "• Горячие клавиши:\nПолучить список фильмов   –   CTRL+G\n" +
-                    "Сохранить изменения   –   CTRL+S\n" +
-                    "Открыть окно добавления фильмов   –   CTRL+O\n" +
-                    "Поиск   –   CTRL+N\n" +
-                    "Удалить выделенный фильм   –   CTRL+D\n" +
-                    "Сохранить в PDF   –   CTRL+P", "Помощь");
+                MessageBox.Show("• Чтобы добавить фильм нажмите на кнопку \"Открыть окно добавления фильмов\".\n\n"
+                    + "• Чтобы просмотреть уже добавленные ранее фильмы нажмите на кнопку \"Открыть окно добавления фильмов\".\n\n"
+                    + "• Чтобы найти фильм в списке используейте поиск.\n\n"
+                    + "• Чтобы удалить фильм выделите его в списке, нажав на ячейку с номером фильма, либо найдите фильм с помощью" +
+                    " поиска, он выделится автоматически, и нажмите кнопку \"Удалить фильм\".\n\n"
+                    + "• Чтобы сохранить список фильмов в PDF файл нажмите на кнопку \"Сохранить в PDF\".\n\n"
+                    + "Вы можете изменять данные фильмов прямо в таблице, для этого кликните 2 раза на"
+                    + " ячейку в которой хотите изменить данные, измените данные и нажмите на кнопку \"Сохранить изменения\".\n\n"
+                    + "• Горячие клавиши:\nПолучить список фильмов   –   CTRL+G\n"
+                    + "Сохранить изменения   –   CTRL+S\n"
+                    + "Открыть окно добавления фильмов   –   CTRL+O\n"
+                    + "Поиск   –   CTRL+N\n"
+                    + "Удалить выделенный фильм   –   CTRL+D\n"
+                    + "Сохранить в PDF   –   CTRL+P", "Помощь");
                 e.SuppressKeyPress = true;
             }
             if (e.Control && e.KeyCode == Keys.G)
