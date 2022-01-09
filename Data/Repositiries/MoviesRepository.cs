@@ -10,15 +10,19 @@ namespace Data.Repositiries
 {
     public class MoviesRepository : IMoviesRepository
     {
-        static string projectRoot = AppDomain.CurrentDomain.BaseDirectory
-      .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
-      .AsObjectSequence(path => Path.GetDirectoryName(path))
-      .Where(path => Directory.EnumerateFiles(path, "*.json").Any())
-      .First();
-        static string jsonFileName = Path.Combine(projectRoot, "MoviesList.json");
-        static string txtFileName = Path.Combine(projectRoot, "LastId.txt");
-        string JSON_FILE_PATH = jsonFileName;
-        string LAST_ID_FILE_PATH = txtFileName;
+        /* static string projectRoot = AppDomain.CurrentDomain.BaseDirectory
+       .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+       .AsObjectSequence(path => Path.GetDirectoryName(path))
+       .Where(path => Directory.EnumerateFiles(path, "*.json").Any())
+       .First();
+         static string jsonFileName = Path.Combine(projectRoot, "MoviesList.json");
+         static string txtFileName = Path.Combine(projectRoot, "LastId.txt");
+         string JSON_FILE_PATH = jsonFileName;
+         string LAST_ID_FILE_PATH = txtFileName;*/
+
+        string JSON_FILE_PATH = "MoviesList.json";
+        string LAST_ID_FILE_PATH = "LastId.txt";
+
         public void AddMovie(MovieEntity movie)
         {
             List<MovieEntity> _movies = new List<MovieEntity>();
